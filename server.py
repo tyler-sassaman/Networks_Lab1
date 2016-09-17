@@ -5,7 +5,8 @@ def Main():
     host = '127.0.0.1'  # this may change
     port = sys.argv[-2]
     file_name = sys.argv[-1]  # name of text file for baord, may have to cast to string
-    h, w = 10, 10    # maybe use 2d array for board
+    w, h = 10, 10    # maybe use 2d array for board
+    baord = [[0 for x in range(w)] for y in range (h)]
 
     board_file.open((str)file_name, 'r')  # r for read only, r+ for read and write, w for write
     # create 2d array or other text file here

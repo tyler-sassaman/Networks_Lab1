@@ -1,4 +1,5 @@
 import sys
+import socket
 
 # one way to read from a command line argument
 #   when you know how the input will look
@@ -14,7 +15,7 @@ print yCoor
 
 # a 2d array representing the current board
 #   we will need to read from the file to populate the array
-w, h = 9, 9
+w, h = 9, 9    #  *** don't we want 10x10???  ***
 board = [[0 for x in range(w)] for y in range(h)] 
 
 # Taking a variable from the message and determing the 

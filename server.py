@@ -7,13 +7,13 @@ def Main():
     port = sys.argv[1]
     file_name = sys.argv[2]  # name of text file for baord, may have to cast to string
     w, h = 10, 10    # maybe use 2d array for board
-    board = [[0 for x in range(w)] for y in range (h)]
+    board = [[0 for x in range(w+1)] for y in range (h)]  # added 1 to w to hande newline char when readig file
 
     board_file = open(file_name, 'r')  # r for read only, r+ for read and write, w for write
     # create 2d array or other text file here
     # by reading from board_file object ie board_file.read() etc
     for i in range(h):
-        for j in range(w):
+        for j in range(w+1):                  # added 1 to w to handle newline char
             board[i][j] = board_file.read(1)  # need to figure out .strip() to remove /n from file
 
     print board        # used for testing and debug only

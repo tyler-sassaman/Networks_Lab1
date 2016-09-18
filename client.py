@@ -17,6 +17,7 @@ def Main():
     # 10x10 playing area, used for a2d array
     # client needs to keep track of opponents board per assignment instrucitons
     w,h = 10,10
+    board = [[0 for x in range(w)] for y in range(h)] 
 
     # reply_message used to hold response from server and send to update board
     # instantiat reply_message to something
@@ -35,6 +36,7 @@ def fire_message():
 
 # update_board() will modify 2d array or text file
 # maybe use a text file since the client will be invoked several times
+# --> do we change the board.txt file or create a temp_board.txt and maintain the field?
 def update_board();
 
 

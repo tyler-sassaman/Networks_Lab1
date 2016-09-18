@@ -37,7 +37,7 @@ def fire_message():
 # update_board() will modify 2d array or text file
 # maybe use a text file since the client will be invoked several times
 # --> do we change the board.txt file or create a temp_board.txt and maintain the field?
-def update_board();
+def update_board():
 
 
 # process_response() could be renamed if desired, just put here for place holder

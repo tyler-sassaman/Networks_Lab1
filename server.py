@@ -6,17 +6,23 @@ def Main():
     port = sys.argv[-2]
     file_name = sys.argv[-1]  # name of text file for baord, may have to cast to string
     w, h = 10, 10    # maybe use 2d array for board
-    baord = [[0 for x in range(w)] for y in range (h)]
+    board = [[0 for x in range(w)] for y in range (h)]
 
-    board_file.open((str)file_name, 'r')  # r for read only, r+ for read and write, w for write
+    board_file = open((str)file_name, 'r')  # r for read only, r+ for read and write, w for write
     # create 2d array or other text file here
     # by reading from board_file object ie board_file.read() etc
+    for i in range(h):
+        board.append([])
+        for j in range(w):
+            board[i] = board_file.read(1)
+
+    print board
 
     # create connection and listen for client
     sock = socket.socket()
     sock.bind((host, port))
     sock.listen(1)
-    conn, addr = sock.accept()  # conn is connection object
+    conn, addr = sock.accept()             # conn is connection object
 
     print 'Connection from: ' + str(addr)  # used for testing/debug only
 
@@ -31,7 +37,7 @@ def Main():
 
         data = 'put something here'                # data will be x,y coords from client
         #read_board(data)
-        reply = process_request()  # reply will be message returned to client
+        reply = process_request()                  # reply will be message returned to client
         conn.send(reply)
     conn.close()
 

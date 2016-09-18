@@ -1,26 +1,26 @@
 import sys
 import socket
 
+print 'test'
 def Main():
     host = '127.0.0.1'  # this may change
-    port = sys.argv[-2]
-    file_name = sys.argv[-1]  # name of text file for baord, may have to cast to string
+    port = sys.argv[1]
+    file_name = sys.argv[2]  # name of text file for baord, may have to cast to string
     w, h = 10, 10    # maybe use 2d array for board
     board = [[0 for x in range(w)] for y in range (h)]
 
-    board_file = open((str)file_name, 'r')  # r for read only, r+ for read and write, w for write
+    board_file = open(file_name, 'r')  # r for read only, r+ for read and write, w for write
     # create 2d array or other text file here
     # by reading from board_file object ie board_file.read() etc
     for i in range(h):
-        board.append([])
         for j in range(w):
-            board[i] = board_file.read(1)
+            board[i][j] = board_file.read(1)  # need to figure out .strip() to remove /n from file
 
-    print board
+    print board        # used for testing and debug only
 
     # create connection and listen for client
     sock = socket.socket()
-    sock.bind((host, port))
+    sock.bind((host, int(port)))
     sock.listen(1)
     conn, addr = sock.accept()             # conn is connection object
 
@@ -29,6 +29,7 @@ def Main():
     # this will run until killed by user, client will be invoked each play
     # all other functionallity will be done by calling other methods
     while True:
+        # might have to put sock.listen() and/or sock.accept() inside while loop
         data = conn.recv(1024)
         # maybe do a try except here??
         if not data:
@@ -46,16 +47,17 @@ def Main():
 # will return hit, miss, sunk to be sent to reply method to be replied
 # to clinet
 def read_board():
-
+    print 'read_board() not done, need to finish'
 
 # update_board() will record state of board
 def update_board():
+    print 'update_board() not done, need to finish'
 
 
 # process_reply() will take result of read_board and
 # return reply variable to send proper reply back to client via conn.send(reply)
 def process_reply():
-
+    print 'process_reply() not done, need to finish'
 
 if __name__ == '__main__':
     Main()

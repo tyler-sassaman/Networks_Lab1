@@ -27,25 +27,31 @@ def Main():
     sock = socket.socket()
     sock.connect((host, port))
 
+    fire_message()
+    process_response()
+    update_board()
+
+    sock.close()
+
 
 # fire_message() will send http post request to server and update
 # reply messagae variable upon response from server, then call 
 # appropriate method to update baord then close connection
 def fire_message():
-
+    print 'fire_message() not done need to finish, put here to run and test program'
 
 # update_board() will modify 2d array or text file
 # maybe use a text file since the client will be invoked several times
 # --> do we change the board.txt file or create a temp_board.txt and maintain the field?
 def update_board():
-
+    print 'update_board() not done need to finish, put here to run and test program'
 
 # process_response() could be renamed if desired, just put here for place holder
 # this method will take the response message from the server and call
 # update_board() to update local copy of board and call any other required methods
 def process_response():
     # if using variables from main need to put global in front ie global x_coor
-
+    print 'process_response() not done need to finish, put here to run and test program'
 
 
 if __name__ == '__main__':

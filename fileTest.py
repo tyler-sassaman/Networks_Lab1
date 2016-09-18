@@ -5,8 +5,7 @@ board_file = open('board.txt', 'r')  # r for read only, r+ for read and write, w
 # create 2d array or other text file here
 # by reading from board_file object ie board_file.read() etc
 for i in range(h):
-    #board.append([])
     for j in range(w):
-        board[i] = board_file.read(1)
+        board[i][j] = board_file.read(1)
 
-print board
+print board[1][3]

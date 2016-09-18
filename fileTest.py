@@ -9,3 +9,4 @@ for i in range(h):
         board[i][j] = board_file.read(1)
 
 print board
+print board[2][3]

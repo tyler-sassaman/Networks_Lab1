@@ -47,13 +47,14 @@ def fire_message(x_coor, y_coor, host, port):
     data = response.read()
     print data
     conn.close()
-    
+
     print 'fire_message() not done need to finish, put here to run and test program'
 
 # update_board() will modify 2d array or text file
 # maybe use a text file since the client will be invoked several times
 # --> do we change the board.txt file or create a temp_board.txt and maintain the field?
 def update_board():
+    
     print 'update_board() not done need to finish, put here to run and test program'
 
 # process_response() could be renamed if desired, just put here for place holder

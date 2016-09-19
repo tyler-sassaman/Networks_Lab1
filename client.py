@@ -47,6 +47,7 @@ def fire_message(x_coor, y_coor, host, port):
     data = response.read()
     print data
     conn.close()
+    
     print 'fire_message() not done need to finish, put here to run and test program'
 
 # update_board() will modify 2d array or text file

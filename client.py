@@ -35,9 +35,18 @@ def Main():
 
 
 # fire_message() will send http post request to server and update
-# reply messagae variable upon response from server, then call 
-# appropriate method to update baord then close connection
-def fire_message():
+# reply message variable upon response from server, then call
+# appropriate method to update board then close connection
+def fire_message(x_coor, y_coor, host, port):
+    sock = socket.socket()
+    sock.connect((host, port))
+    conn, addr = sock.accept()
+    conn.request("POST", "FIRE", x_coor, y_coor)
+    response = conn.getresponse()
+    print response.status, response.reason
+    data = response.read()
+    print data
+    conn.close()
     print 'fire_message() not done need to finish, put here to run and test program'
 
 # update_board() will modify 2d array or text file

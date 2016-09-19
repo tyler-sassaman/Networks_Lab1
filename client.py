@@ -24,14 +24,15 @@ def Main():
     # instantiat reply_message to something
     reply_message = 'something for now'
 
+    # **** commented out socket stuff sincce we are using httplib2 ****
     # open connection to server
-    sock = socket.socket()
-    sock.connect((host, port))
+    #sock = socket.socket()
+    #sock.connect((host, port))
+    # ***** leave above commented out if using httplib2 library ****
 
     fire_message()
     process_response()
     update_board()
-
     sock.close()
 
 

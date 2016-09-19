@@ -1,0 +1,30 @@
+Agreed Upon Message formatting:
+
+FIRE MESSAGE:
+	Post x=xx & y=yy
+	Example Message:
+		POST / HTTP/1.1
+		User-Agent:client.py
+		Content-Type:application/x-www-form-urlencoded
+		Content-Length:7
+
+		x=0&y=0
+
+
+		-- End of Message
+
+Reply Message:
+	CODES: 400 - Bad Request
+               404 - Out of Bounds
+               410 - Repeated Fire
+               200 - OK M (M -> hit=1/0&sink=c/b/r/s/d)
+	Example Message:
+		HTTP/1.1 OK
+		Content-Type:application/x-www-form-urlencoded
+		Content-Length:100
+		
+		hit=1&sink=c
+
+		
+		-- End of Message
+                           

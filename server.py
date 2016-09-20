@@ -35,7 +35,6 @@ def Main():
 # read_board() used for reading board at coords sent from client
 # will return hit, miss, sunk to be sent to reply method to be replied
 # to clinet
-# ***** maybe not return anything **** just call other method from here ****
 def read_board(x, y):
     global h
     global w
@@ -53,39 +52,34 @@ def read_board(x, y):
         #return result
     if y >= h || y < 0:
         result = 'o'    # letter o
-        #return result
     if board[x][y] == '-':
         result = 'm'
-        baot = 'non'     # need something so process reply doesn't record last boat hit
-        #return result    # m for miss
+        # this boat assignment is redundent because its initilized to non
+        #boat = 'non'     
+        # m for miss
+        process_reply(result, boat)
     if board[x][y] == 'S':
         submarine -= 1
         boat = 'sub'
         result = 'h'
-        #return result
     if board[x][y] == 'B':
         battleship -= 1
         boat = 'bs'
         result = 'h'
-        #return result
     if board[x][y] == 'C':
         carrier -= 1
         boat = 'car'
         result = 'h'
-        #return result
     if board[x][y] == 'D':
         destroyer -= 1
         boat = 'des'
         result = 'h'
-        #return result
     if board[x][y] == 'R':
         cRuiser -= 1
         boat = 'cru'
         result = 'h'
-        #return result
     if board[x][y] == 'X':
         result = 'x'
-        #return result
     # we should never get here without an if case being true
     # but maybe put an else here to handle any error????
     update_board(x, y, result)
@@ -101,7 +95,6 @@ def update_board(x, y, result):
 
 
 # process_reply() will take result of read_board and
-# return reply variable to send proper reply back to client via conn.send(reply)
 def process_reply(result, boat):
     global submarine
     global cRuiser
@@ -111,24 +104,33 @@ def process_reply(result, boat):
 
     if boat == 'sub':
         if submarine == 0:
+            # include hit in the message as it falls in the rules
             # send http reply for sunk submarine
     if boat == 'car':
         if carrier == 0:
+            #include hit in the message as it falls in the rules
             # send sunk carrier http
     if boat == 'cru':
         if cRuiser == 0:
+            #include hit in the message as it falls in the rules
             # send sunk cruiser http
     if boat == 'des':
         if destroyer == 0:
+            #include hit in the message as it falls in the rules
             # send sund destroyer http
     if boat == 'bs':
         if battleship == 0:
+            #include hit in the message as it falls in the rules
             # send sunk battleship http
     # if we get this far send result
     if result == 'h':
+        # a hit but no sink
     if result == 'm':
+        # no hit its a miss
     if result == 'o':
+        # error 404 as its out of bounds
     if result == 'x':
+        # error 400 as this has already been called
         # send proper http response
     
 

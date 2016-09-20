@@ -60,6 +60,7 @@ def Main():
 # read_board() used for reading board at coords sent from client
 # will return hit, miss, sunk to be sent to reply method to be replied
 # to clinet
+# ***** maybe not return anything **** just call other method from here ****
 def read_board(x, y):
     global h
     global w
@@ -69,53 +70,56 @@ def read_board(x, y):
     global battleship
     global cRuiser
     global destroyer
-    result = n     # initialize result to something
-    boat = t       # variable to send what ship to check if sunk to processs reply
+    result = 'n'   # initialize result to something
+    boat = 'non'   # variable to send what ship to check if sunk to processs reply
 
     if x >= w || x < 0:
-        result = o   # letter o for out of bounds 
-        return result
+        result = 'o'   # letter o for out of bounds 
+        #return result
     if y >= h || y < 0:
-        result = o    # letter o
-        return result
-    if board[x][y] = '-':
-        result = m
-        return result    # m for miss
-    if board[x][y] = 'S':
+        result = 'o'    # letter o
+        #return result
+    if board[x][y] == '-':
+        result = 'm'
+        baot = 'non'     # need something so process reply doesn't record last boat hit
+        #return result    # m for miss
+    if board[x][y] == 'S':
         submarine -= 1
         boat = 'sub'
-        result = h
-        return result
-    if board[x][y] = 'B':
+        result = 'h'
+        #return result
+    if board[x][y] == 'B':
         battleship -= 1
         boat = 'bs'
-        result = h
-        return result
-    if board[x][y] = 'C':
+        result = 'h'
+        #return result
+    if board[x][y] == 'C':
         carrier -= 1
         boat = 'car'
-        result = h
-        return result
-    if board[x][y] = 'D':
+        result = 'h'
+        #return result
+    if board[x][y] == 'D':
         destroyer -= 1
         boat = 'des'
-        result = h
-        return result
-    if board[x][y] = 'R':
+        result = 'h'
+        #return result
+    if board[x][y] == 'R':
         cRuiser -= 1
         boat = 'cru'
-        result = h
-        return result
-    if board[x][y] = 'X':
-        result = x
-        return result
+        result = 'h'
+        #return result
+    if board[x][y] == 'X':
+        result = 'x'
+        #return result
+    # we should never get here without an if case being true
+    # but maybe put an else here to handle any error????
     update_board(x, y, result)
     process_reply(result, boat)
 
 # update_board() will record state of board
 def update_board(x, y, result):
     global board
-    if result = m:
+    if result == 'm':
         board[x][y] = 'X'
     else:
         board[x][y] = result
@@ -130,26 +134,26 @@ def process_reply(result, boat):
     global destroyer
     global carrier
 
-    if boat = 'sub':
-        if submarine = 0:
+    if boat == 'sub':
+        if submarine == 0:
             # send http reply for sunk submarine
-    if boat = 'car':
-        if carrier = 0:
+    if boat == 'car':
+        if carrier == 0:
             # send sunk carrier http
-    if boat = 'cru':
-        if cRuiser = 0:
+    if boat == 'cru':
+        if cRuiser == 0:
             # send sunk cruiser http
-    if boat = 'des':
-        if destroyer = 0:
+    if boat == 'des':
+        if destroyer == 0:
             # send sund destroyer http
-    if boat = 'bs':
-        if battleship = 0:
+    if boat == 'bs':
+        if battleship == 0:
             # send sunk battleship http
     # if we get this far send result
-    if result = h:
-    if result = m:
-    if result = o:
-    if result = x:
+    if result == 'h':
+    if result == 'm':
+    if result == 'o':
+    if result == 'x':
         # send proper http response
     
 

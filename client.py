@@ -1,5 +1,4 @@
 import sys
-import socket
 import httplib     # need to install this library, not in default libraries
 
 def Main():
@@ -24,16 +23,13 @@ def Main():
     # instantiat reply_message to something
     reply_message = 'something for now'
 
-    # **** commented out socket stuff sincce we are using httplib2 ****
-    # open connection to server
-    #sock = socket.socket()
-    #sock.connect((host, port))
-    # ***** leave above commented out if using httplib2 library ****
+    conn = httplib.HTTPConnection(host, port)  # might have to cast port to int
+    
 
     fire_message()
     process_response()
     update_board()
-    sock.close()
+    # then close connection here
 
 
 # fire_message() will send http post request to server and update
